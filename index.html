@@ -60,6 +60,24 @@ nav {
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
   padding: .7rem 1.25rem; max-width: 1100px; margin: 0 auto;
+  gap: 1rem;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: .65rem;
+  min-width: 0; flex-shrink: 1;
+}
+.nav-brand-text {
+  display: flex; flex-direction: column; line-height: 1.15;
+  min-width: 0;
+}
+.nav-brand-name {
+  font-size: 1.05rem; font-weight: 900; letter-spacing: .5px;
+  color: var(--text-dark); white-space: nowrap;
+}
+.nav-brand-tagline {
+  font-size: .65rem; font-weight: 600; color: var(--muted-dark);
+  letter-spacing: .2px; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; max-width: 100%;
 }
 .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
 .nav-links a {
@@ -402,18 +420,112 @@ footer {
   .footer-bottom { flex-direction: column; text-align: center; }
   .stat-pill { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
   .stat-pill:last-child { border-bottom: none; }
+  .nav-brand-name { font-size: .95rem; }
+  .nav-brand-tagline { font-size: .6rem; }
+}
+@media (max-width: 380px) {
+  .nav-brand img { height: 38px !important; width: 38px !important; }
+  .nav-brand-name { font-size: .85rem; }
+  .nav-brand-tagline { display: none; }
+}
+
+/* Preloader — glowing bulb */
+#preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: radial-gradient(ellipse 70% 60% at 50% 45%, #ffffff 0%, #f8fafc 70%, #f1f5f9 100%);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1.5rem;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+#preloader.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+.bulb-wrap {
+  position: relative; width: 96px; height: 96px;
+  display: flex; align-items: center; justify-content: center;
+}
+.bulb-glow-ring {
+  position: absolute; inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,.55) 0%, rgba(245,158,11,.12) 45%, transparent 75%);
+  opacity: 0; transition: opacity .4s ease;
+  filter: blur(2px);
+}
+#preloader.bulb-lit .bulb-glow-ring { opacity: 1; }
+.bulb-svg { width: 64px; height: 96px; position: relative; z-index: 1; overflow: visible; }
+.bulb-fill-clip { transition: transform 1.6s cubic-bezier(.4,0,.2,1); transform: translateY(100%); }
+#preloader.bulb-lit .bulb-fill-clip { transform: translateY(0%); }
+.bulb-outline { fill: none; stroke: rgba(217,119,6,.55); stroke-width: 2.5; }
+.bulb-filament { stroke: rgba(217,119,6,.4); stroke-width: 1.5; fill: none; transition: stroke .4s ease, filter .4s ease; }
+#preloader.bulb-lit .bulb-filament { stroke: #fff7e0; filter: drop-shadow(0 0 4px #fde68a); }
+.preloader-brand {
+  display: flex; flex-direction: column; align-items: center; gap: .3rem;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+#preloader.bulb-lit .preloader-brand { opacity: 1; transform: translateY(0); }
+.preloader-name {
+  font-size: 1.3rem; font-weight: 900; letter-spacing: 1.5px;
+  background: linear-gradient(135deg, #f59e0b, #fde68a, #f59e0b);
+  background-size: 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease infinite;
+}
+.preloader-progress-track {
+  width: 140px; height: 3px; border-radius: 2px;
+  background: rgba(15,23,42,.08); overflow: hidden;
+}
+.preloader-progress-bar {
+  height: 100%; width: 0%; border-radius: 2px;
+  background: linear-gradient(90deg, #f59e0b, #fde68a);
+  transition: width 1.6s cubic-bezier(.4,0,.2,1);
+}
+#preloader.bulb-lit .preloader-progress-bar { width: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  #preloader, .bulb-fill-clip, .preloader-brand, .preloader-progress-bar { transition: none; }
 }
 </style>
 </head>
 <body>
+<div id="preloader" aria-hidden="true">
+  <div class="bulb-wrap">
+    <div class="bulb-glow-ring"></div>
+    <svg class="bulb-svg" viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="bulbClip">
+          <path d="M32 4C18 4 8 14.5 8 27c0 9 5 14.5 9 19.5 2.5 3 4 5.5 4.5 9h21c.5-3.5 2-6 4.5-9 4-5 9-10.5 9-19.5C56 14.5 46 4 32 4z"/>
+        </clipPath>
+      </defs>
+      <!-- glass outline -->
+      <path class="bulb-outline" d="M32 4C18 4 8 14.5 8 27c0 9 5 14.5 9 19.5 2.5 3 4 5.5 4.5 9h21c.5-3.5 2-6 4.5-9 4-5 9-10.5 9-19.5C56 14.5 46 4 32 4z"/>
+      <!-- liquid light fill, clipped to bulb shape, animates upward -->
+      <g clip-path="url(#bulbClip)">
+        <rect class="bulb-fill-clip" x="6" y="2" width="56" height="64" fill="#f59e0b"/>
+      </g>
+      <!-- filament -->
+      <path class="bulb-filament" d="M25 22 L32 34 L25 34 L32 46 M39 22 L32 34"/>
+      <!-- screw base -->
+      <rect x="24" y="56" width="16" height="4" rx="1" fill="#1e293b"/>
+      <rect x="25" y="61" width="14" height="4" rx="1" fill="#1e293b"/>
+      <rect x="26" y="66" width="12" height="4" rx="1" fill="#1e293b"/>
+      <path d="M27 70 h10 l-2 8 h-6 z" fill="#0f172a"/>
+    </svg>
+  </div>
+  <div class="preloader-brand">
+    <span class="preloader-name">PK LIGHTS</span>
+    <div class="preloader-progress-track"><div class="preloader-progress-bar"></div></div>
+  </div>
+</div>
 <div id="tsparticles"></div>
 
 <!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <a href="#hero">
+    <a href="#hero" class="nav-brand">
       <img src="logo.png" alt="PK Lights"
-        style="height:46px;width:46px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,158,11,.4);box-shadow:0 2px 12px rgba(245,158,11,.2);" />
+        style="height:46px;width:46px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,158,11,.4);box-shadow:0 2px 12px rgba(245,158,11,.2);flex-shrink:0;" />
+      <span class="nav-brand-text">
+        <span class="nav-brand-name">PK LIGHTS</span>
+        <span class="nav-brand-tagline" data-i18n="nav_tagline">Wholesale LED &amp; Electrical</span>
+      </span>
     </a>
     <label for="menu-toggle" class="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -718,6 +830,24 @@ footer {
 </a>
 
 <script>
+(function () {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) return;
+  function lightUp() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => preloader.classList.add('bulb-lit'));
+    });
+    setTimeout(() => preloader.classList.add('fade-out'), 1900);
+    setTimeout(() => preloader.remove(), 2600);
+  }
+  if (document.readyState === 'complete') {
+    lightUp();
+  } else {
+    window.addEventListener('load', lightUp);
+    setTimeout(lightUp, 2500); // safety fallback if load is slow
+  }
+})();
+
 tsParticles.load("tsparticles", {
   fullScreen: { enable: false },
   background: { color: { value: "transparent" } },
@@ -813,6 +943,7 @@ document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
 const translations = {
   en: {
     nav_about:"About", nav_products:"Products", nav_policies:"Policies", nav_contact:"Contact",
+    nav_tagline:"Wholesale LED & Electrical",
     hero_badge:"⚡ South India's Trusted Wholesale Partner",
     hero_tagline:"Wholesale Supplier of LED Lighting & Electrical Products Across South India",
     hero_cta_primary:"📞 Contact for Wholesale", hero_cta_secondary:"View Products",
@@ -844,6 +975,7 @@ const translations = {
   },
   ml: {
     nav_about:"ഞങ്ങളെ കുറിച്ച്", nav_products:"ഉൽപ്പന്നങ്ങൾ", nav_policies:"നയങ്ങൾ", nav_contact:"ബന്ധപ്പെടുക",
+    nav_tagline:"മൊത്ത LED & ഇലക്ട്രിക്കൽ",
     hero_badge:"⚡ ദക്ഷിണ ഇന്ത്യയിലെ വിശ്വസ്ത മൊത്ത വിതരണക്കാർ",
     hero_tagline:"ദക്ഷിണ ഇന്ത്യ മുഴുവൻ LED ലൈറ്റിംഗ് & ഇലക്ട്രിക്കൽ ഉൽപ്പന്നങ്ങളുടെ മൊത്ത വിതരണക്കാർ",
     hero_cta_primary:"📞 മൊത്ത ഓർഡറിന് ബന്ധപ്പെടുക", hero_cta_secondary:"ഉൽപ്പന്നങ്ങൾ കാണുക",
@@ -875,6 +1007,7 @@ const translations = {
   },
   ta: {
     nav_about:"எங்களை பற்றி", nav_products:"தயாரிப்புகள்", nav_policies:"கொள்கைகள்", nav_contact:"தொடர்பு",
+    nav_tagline:"மொத்த LED & மின்சாரம்",
     hero_badge:"⚡ தென் இந்தியாவின் நம்பகமான மொத்த விற்பனையாளர்",
     hero_tagline:"தென் இந்தியா முழுவதும் LED விளக்குகள் & மின்சார பொருட்களின் மொத்த சப்ளையர்",
     hero_cta_primary:"📞 மொத்த ஆர்டருக்கு தொடர்பு கொள்ளுங்கள்", hero_cta_secondary:"தயாரிப்புகளை காண்க",
@@ -906,6 +1039,7 @@ const translations = {
   },
   kn: {
     nav_about:"ನಮ್ಮ ಬಗ್ಗೆ", nav_products:"ಉತ್ಪನ್ನಗಳು", nav_policies:"ನೀತಿಗಳು", nav_contact:"ಸಂಪರ್ಕಿಸಿ",
+    nav_tagline:"ಸಗಟು LED & ವಿದ್ಯುತ್",
     hero_badge:"⚡ ದಕ್ಷಿಣ ಭಾರತದ ವಿಶ್ವಾಸಾರ್ಹ ಸಗಟು ಪೂರೈಕೆದಾರ",
     hero_tagline:"ದಕ್ಷಿಣ ಭಾರತದಾದ್ಯಂತ LED ಬೆಳಕು & ವಿದ್ಯುತ್ ಉತ್ಪನ್ನಗಳ ಸಗಟು ಪೂರೈಕೆದಾರ",
     hero_cta_primary:"📞 ಸಗಟು ಆರ್ಡರ್‌ಗೆ ಸಂಪರ್ಕಿಸಿ", hero_cta_secondary:"ಉತ್ಪನ್ನಗಳನ್ನು ನೋಡಿ",
@@ -937,6 +1071,7 @@ const translations = {
   },
   te: {
     nav_about:"మా గురించి", nav_products:"ఉత్పత్తులు", nav_policies:"విధానాలు", nav_contact:"సంప్రదించండి",
+    nav_tagline:"హోల్‌సేల్ LED & ఎలక్ట్రికల్",
     hero_badge:"⚡ దక్షిణ భారతదేశంలో విశ్వసనీయ హోల్‌సేల్ సరఫరాదారు",
     hero_tagline:"దక్షిణ భారతదేశం అంతటా LED లైటింగ్ & ఎలక్ట్రికల్ ఉత్పత్తుల హోల్‌సేల్ సరఫరాదారు",
     hero_cta_primary:"📞 హోల్‌సేల్ కోసం సంప్రదించండి", hero_cta_secondary:"ఉత్పత్తులు చూడండి",
