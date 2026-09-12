@@ -1,0 +1,44 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import ShippingTicker from "./ShippingTicker";
+
+export default function SubpageShell({ eyebrow, title, intro, children }) {
+  const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  useEffect(() => {
+    if (!open) return undefined;
+    const closeOnEscape = event => {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+  return (
+    <main className="subpage">
+      <ShippingTicker />
+      <header className="topbar subpage-nav">
+        <a className="brand" href="/staticweb-pklights/" aria-label="PK LIGHTS home">
+          <img src="/staticweb-pklights/images/pk-lights-logo.png" alt="PK LIGHTS" />
+          <span className="brand-copy"><b>PK LIGHTS</b><small>Lighting a brighter tomorrow</small></span>
+        </a>
+        <nav id="main-navigation" className={open ? "desktop-nav open" : "desktop-nav"} aria-label="Main navigation">
+          <a href="/staticweb-pklights/" onClick={() => setOpen(false)}>Home</a><a href="/staticweb-pklights/#categories" onClick={() => setOpen(false)}>Products</a><a href="/staticweb-pklights/downloads.html" onClick={() => setOpen(false)}>Downloads</a>
+          <a href="/staticweb-pklights/help.html" onClick={() => setOpen(false)}>How We Work</a><a href="/staticweb-pklights/contact.html" onClick={() => setOpen(false)}>Contact</a><a className="mobile-nav-quote" href="/staticweb-pklights/quote.html" onClick={() => setOpen(false)}>Detailed quote form</a>
+        </nav>
+        <div className="header-actions"><a className="call-btn" href="tel:+919947089167">Call</a><a className="enquiry-nav simple" href="/staticweb-pklights/quote.html">Get Quote</a><button ref={menuButtonRef} className="menu-btn" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="main-navigation">{open ? "Close" : "Menu"}</button></div>
+      </header>
+      <section className="subpage-hero"><span className="kicker">{eyebrow}</span><h1>{title}</h1><p>{intro}</p></section>
+      {children}
+      <footer className="site-footer">
+        <div className="footer-brand"><img src="/staticweb-pklights/images/pk-lights-logo.png" alt="" /><div><b>PK LIGHTS</b><span>Wholesale Distributor in Electronic Lights</span></div></div>
+        <div><small>Call / WhatsApp</small><a href="tel:+919947089167">+91 99470 89167</a></div>
+        <div><small>Email</small><a href="mailto:pklights2017@gmail.com">pklights2017@gmail.com</a></div>
+        <div><small>Business hours</small><span>Mon–Sat · 10am–6pm</span></div>
+      </footer>
+      <div className="mobile-contact-bar"><a href="tel:+919947089167">Call</a><a href="/staticweb-pklights/quote.html">Get Quote</a></div>
+    </main>
+  );
+}

@@ -1,0 +1,21 @@
+{
+  "name": "pk-lights-wholesale-catalogue",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vinext build",
+    "build:pages": "vinext build && node scripts/prepare-github-pages.mjs",
+    "start": "vinext start"
+  },
+  "dependencies": {
+    "@cloudflare/vite-plugin": "latest",
+    "@vitejs/plugin-rsc": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "vinext": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {},
+  "type": "module"
+}
