@@ -26,7 +26,7 @@ export default function QuotePage() {
           <label><span>Product details *</span><textarea name="message" autoComplete="off" required placeholder="Model, wattage, colour, intended use or other details" value={form.message} onChange={e=>update("message",e.target.value)} /></label>
           <button className="whatsapp-btn large" type="submit">Continue on WhatsApp →</button><small>No order is placed automatically. We will confirm stock, MOQ, rate, tax and dispatch details.</small>
         </form>
-        <aside className="quote-aside"><span className="kicker">Before submitting</span><h2>What happens next?</h2><ol><li>We review the product and quantity.</li><li>We confirm availability, MOQ and current wholesale rate.</li><li>You verify specifications and complete advance payment.</li><li>We prepare and dispatch the confirmed order.</li></ol><a href="/staticweb-pklights/help.html#conditions">Read order conditions →</a></aside>
+        <aside className="quote-aside"><span className="kicker">Before submitting</span><h2>What happens next?</h2><ol><li>We review the product and quantity.</li><li>We confirm availability, MOQ and current wholesale rate.</li><li>You verify specifications and complete advance payment.</li><li>We prepare and dispatch the confirmed order.</li></ol><a href="/help.html#conditions">Read order conditions →</a></aside>
       </section>
     </SubpageShell>
   );

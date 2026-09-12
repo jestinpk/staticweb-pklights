@@ -16,7 +16,7 @@ const products = [
     unit: "sets",
     featured: true,
     accent: "warm",
-    image: "/staticweb-pklights/images/pixel-led-toran.webp",
+    image: "/images/pixel-led-toran.webp",
     specs: ["21 hanging strings", "1 ft fixed spacing", "12V pixel system", "Custom colour patterns"],
   },
   {
@@ -29,7 +29,7 @@ const products = [
     unit: "pcs",
     featured: true,
     accent: "amber",
-    image: "/staticweb-pklights/images/running-led-tube-cutout.webp",
+    image: "/images/running-led-tube-cutout.webp",
     specs: ["Warm white output", "Running light effect", "Outdoor décor use", "Bulk carton supply"],
   },
   {
@@ -42,7 +42,7 @@ const products = [
     unit: "pcs",
     featured: false,
     accent: "peach",
-    image: "/staticweb-pklights/images/neon-roll-warm-white.webp",
+    image: "/images/neon-roll-warm-white.webp",
     specs: ["220V AC direct input", "Driver-less design", "Double-side illumination", "Flexible and durable"],
   },
   {
@@ -55,7 +55,7 @@ const products = [
     unit: "rolls",
     featured: true,
     accent: "cyan",
-    image: "/staticweb-pklights/images/pixel-led-strip.webp",
+    image: "/images/pixel-led-strip.webp",
     specs: ["6 metre length", "7 single colours", "12V pixel system", "Controller compatible"],
   },
   {
@@ -68,7 +68,7 @@ const products = [
     unit: "pcs",
     featured: false,
     accent: "violet",
-    image: "/staticweb-pklights/images/kkdn-rgb-pixel-led.webp",
+    image: "/images/kkdn-rgb-pixel-led.webp",
     specs: ["5V RGB multicolour", "50 waterproof pixels", "5 inch bulb gap", "Controller sold separately"],
   },
   {
@@ -81,7 +81,7 @@ const products = [
     unit: "pcs",
     featured: false,
     accent: "green",
-    image: "/staticweb-pklights/images/varshhaa-100w-flood-light.webp",
+    image: "/images/varshhaa-100w-flood-light.webp",
     specs: ["100W rated power", "IP65 outdoor body", "Warm white / green", "1-year warranty"],
   },
   {
@@ -94,7 +94,7 @@ const products = [
     unit: "pcs",
     featured: true,
     accent: "magenta",
-    image: "/staticweb-pklights/images/par-can-led-cutout.webp",
+    image: "/images/par-can-led-cutout.webp",
     specs: ["54 × 4W RGBW LEDs", "DMX512 / Auto / Sound", "4 / 8 channels", "190W rated power"],
   },
   {
@@ -107,7 +107,7 @@ const products = [
     unit: "pcs",
     featured: false,
     accent: "steel",
-    image: "/staticweb-pklights/images/led-power-supplies-cutout.webp",
+    image: "/images/led-power-supplies-cutout.webp",
     specs: ["Multiple wattages", "12V options", "Bulk availability", "Match to your load"],
   },
 ];
@@ -159,18 +159,18 @@ function Header({ cartCount, openCart }) {
       <ShippingTicker />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="PK LIGHTS home">
-          <img src="/staticweb-pklights/images/pk-lights-logo.png" alt="PK LIGHTS" />
+          <img src="/images/pk-lights-logo.png" alt="PK LIGHTS" />
           <span className="brand-copy"><b>PK LIGHTS</b><small>Lighting a brighter tomorrow</small></span>
         </a>
         <nav id="main-navigation" className={menuOpen ? "desktop-nav open" : "desktop-nav"} aria-label="Main navigation">
           <a href="#categories" onClick={() => setMenuOpen(false)}>Products</a>
-          <a href="/staticweb-pklights/downloads.html" onClick={() => setMenuOpen(false)}>Downloads</a>
-          <a href="/staticweb-pklights/help.html" onClick={() => setMenuOpen(false)}>How We Work</a>
-          <a href="/staticweb-pklights/contact.html" onClick={() => setMenuOpen(false)}>Contact</a>
-          <a className="mobile-nav-quote" href="/staticweb-pklights/quote.html" onClick={() => setMenuOpen(false)}>Detailed quote form</a>
+          <a href="/downloads.html" onClick={() => setMenuOpen(false)}>Downloads</a>
+          <a href="/help.html" onClick={() => setMenuOpen(false)}>How We Work</a>
+          <a href="/contact.html" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a className="mobile-nav-quote" href="/quote.html" onClick={() => setMenuOpen(false)}>Detailed quote form</a>
         </nav>
         <div className="header-actions">
-          <a className="call-btn" href="/staticweb-pklights/quote.html">Detailed quote</a>
+          <a className="call-btn" href="/quote.html">Detailed quote</a>
           <button className="enquiry-nav" onClick={openCart}>WhatsApp Enquiry <span>{cartCount}</span></button>
           <button ref={menuButtonRef} className="menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="main-navigation">{menuOpen ? "Close" : "Menu"}</button>
         </div>
@@ -354,8 +354,8 @@ export default function HomePage() {
 
       <section className="hero">
         <picture>
-          <source media="(max-width: 760px)" srcSet="/staticweb-pklights/images/hero-warehouse-960.webp" />
-          <img className="hero-image" src="/staticweb-pklights/images/hero-warehouse-1600.webp" alt="Organized wholesale lighting distribution warehouse with dispatch-ready stock" width="1600" height="900" loading="eager" fetchPriority="high" decoding="async" />
+          <source media="(max-width: 760px)" srcSet="/images/hero-warehouse-960.webp" />
+          <img className="hero-image" src="/images/hero-warehouse-1600.webp" alt="Organized wholesale lighting distribution warehouse with dispatch-ready stock" width="1600" height="900" loading="eager" fetchPriority="high" decoding="async" />
         </picture>
         <div className="hero-scrim" />
         <div className="hero-copy">
@@ -381,10 +381,10 @@ export default function HomePage() {
         </div>
         <div className="category-grid">
           {[
-            ["LED & Commercial", "Bulbs, panels, flood and project lighting", "/staticweb-pklights/images/category-commercial-installation.webp", "All"],
-            ["Decorative Lighting", "Pendant, festive and architectural décor", "/staticweb-pklights/images/category-decorative-installation.webp", "Decorative"],
-            ["Technical Lighting", "Pixel, programmable, track and stage lighting", "/staticweb-pklights/images/category-technical-installation.webp", "Pixel LED"],
-            ["Drivers & Electrical", "Power supplies, controllers and accessories", "/staticweb-pklights/images/category-electrical-installation.webp", "Accessories"],
+            ["LED & Commercial", "Bulbs, panels, flood and project lighting", "/images/category-commercial-installation.webp", "All"],
+            ["Decorative Lighting", "Pendant, festive and architectural décor", "/images/category-decorative-installation.webp", "Decorative"],
+            ["Technical Lighting", "Pixel, programmable, track and stage lighting", "/images/category-technical-installation.webp", "Pixel LED"],
+            ["Drivers & Electrical", "Power supplies, controllers and accessories", "/images/category-electrical-installation.webp", "Accessories"],
           ].map(([title, copy, image, filter], index) => (
             <a className={`category-card crop-${index + 1}`} href="#catalogue" key={title} onClick={() => setCategory(filter)}>
               <img src={image} alt="" width="720" height="540" loading="lazy" decoding="async" />
@@ -484,7 +484,7 @@ export default function HomePage() {
       </section>
 
       <section className="dispatch-proof" aria-labelledby="dispatch-title">
-        <img src="/staticweb-pklights/images/hero-warehouse-960.webp" alt="Lighting products organized for wholesale packing and dispatch" width="960" height="900" loading="lazy" decoding="async" />
+        <img src="/images/hero-warehouse-960.webp" alt="Lighting products organized for wholesale packing and dispatch" width="960" height="900" loading="lazy" decoding="async" />
         <div className="dispatch-copy">
           <span className="kicker">Delivery &amp; dispatch</span>
           <h2 id="dispatch-title">Clear confirmation before every dispatch.</h2>
@@ -494,7 +494,7 @@ export default function HomePage() {
             <div><b>02</b><span>Packed for transit</span><small>Confirmed wholesale orders prepared for parcel dispatch</small></div>
             <div><b>03</b><span>Dispatch details shared</span><small>Parcel availability depends on destination and order size</small></div>
           </div>
-          <a href="/staticweb-pklights/help.html#supplier-area">Check our service area →</a>
+          <a href="/help.html#supplier-area">Check our service area →</a>
         </div>
       </section>
 
@@ -505,10 +505,10 @@ export default function HomePage() {
           <p>Understand wholesale eligibility, MOQ, payment, dispatch, delivery area, returns and product confirmation before contacting us.</p>
         </div>
         <div className="answer-links">
-          <a href="/staticweb-pklights/help.html#ordering"><span>01</span><b>How ordering works</b><small>From enquiry to dispatch</small></a>
-          <a href="/staticweb-pklights/help.html#conditions"><span>02</span><b>Order conditions</b><small>MOQ, payment and returns</small></a>
-          <a href="/staticweb-pklights/help.html#supplier-area"><span>03</span><b>Supplier & service area</b><small>South India delivery and India sourcing</small></a>
-          <a href="/staticweb-pklights/help.html#languages"><span>04</span><b>Language assistance</b><small>English + 4 South Indian languages</small></a>
+          <a href="/help.html#ordering"><span>01</span><b>How ordering works</b><small>From enquiry to dispatch</small></a>
+          <a href="/help.html#conditions"><span>02</span><b>Order conditions</b><small>MOQ, payment and returns</small></a>
+          <a href="/help.html#supplier-area"><span>03</span><b>Supplier & service area</b><small>South India delivery and India sourcing</small></a>
+          <a href="/help.html#languages"><span>04</span><b>Language assistance</b><small>English + 4 South Indian languages</small></a>
         </div>
       </section>
 
@@ -518,7 +518,7 @@ export default function HomePage() {
       </section>
 
       <footer className="site-footer" id="contact">
-        <div className="footer-brand"><img src="/staticweb-pklights/images/pk-lights-logo.png" alt="" /><div><b>PK LIGHTS</b><span>Wholesale Distributor in Electronic Lights</span></div></div>
+        <div className="footer-brand"><img src="/images/pk-lights-logo.png" alt="" /><div><b>PK LIGHTS</b><span>Wholesale Distributor in Electronic Lights</span></div></div>
         <div><small>Call / WhatsApp</small><a href="tel:+919947089167">+91 99470 89167</a></div>
         <div><small>Email</small><a href="mailto:pklights2017@gmail.com">pklights2017@gmail.com</a></div>
         <div><small>Business hours</small><span>Mon–Sat · 10am–6pm</span></div>

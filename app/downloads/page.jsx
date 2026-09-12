@@ -240,7 +240,7 @@ export default function DownloadsPage() {
         <div className="download-note">
           <b>Can’t find a product file?</b>
           <p>Send the product name or photo. We can confirm whether a catalogue, specification sheet or design is available.</p>
-          <a href="/staticweb-pklights/quote.html">Ask for a product file →</a>
+          <a href="/quote.html">Ask for a product file →</a>
         </div>
 
         {updatedAt && <p className="resource-updated">Library last checked {new Date(updatedAt).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</p>}

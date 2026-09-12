@@ -2,7 +2,7 @@
 
 This package is configured for:
 
-`https://jestinpk.github.io/staticweb-pklights/`
+`https://pklights.in/`
 
 ## Upload
 
@@ -14,4 +14,4 @@ This package is configured for:
 
 After the workflow succeeds, open:
 
-`https://jestinpk.github.io/staticweb-pklights/`
+`https://pklights.in/`

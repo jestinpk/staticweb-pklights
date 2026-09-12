@@ -6,7 +6,7 @@ Target repository: `https://github.com/jestinpk/staticweb-pklights`
 
 1. Open the target repository on GitHub.
 2. Select **Code → Codespaces → Create codespace on main**.
-3. Upload `PK-LIGHTS-staticweb-pklights.zip` into the Codespace.
+3. Upload `PK-LIGHTS-pklights-in-fixed.zip` into the Codespace.
 4. In the terminal, create a recoverable backup of the old website:
 
    ```bash
@@ -20,7 +20,7 @@ Target repository: `https://github.com/jestinpk/staticweb-pklights`
 
    ```bash
    git rm -r .
-   unzip -o PK-LIGHTS-staticweb-pklights.zip
+   unzip -o PK-LIGHTS-pklights-in-fixed.zip
    ```
 
 6. Verify that the ZIP itself is not staged, then commit and push:
@@ -34,4 +34,4 @@ Target repository: `https://github.com/jestinpk/staticweb-pklights`
 
 7. Open the repository's **Actions** tab. Wait for **Deploy PK LIGHTS to GitHub Pages** to finish successfully.
 
-The package is already configured for the `/staticweb-pklights/` GitHub Pages path. Do not upload `node_modules`, `dist`, `.vinext`, or another ZIP file.
+The package is configured for the root custom domain `https://pklights.in/`. Do not upload `node_modules`, `dist`, `.vinext`, or another ZIP file.
