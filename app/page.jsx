@@ -124,6 +124,25 @@ function productImage(product) {
   return product.image;
 }
 
+function ShareIcon({ copied = false }) {
+  if (copied) {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m5 12 4 4L19 6" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="m8.59 13.51 6.83 3.98M15.41 6.51 8.59 10.49" />
+    </svg>
+  );
+}
+
 function ProductArt({ product, priority = false }) {
   return (
     <div className={`product-art art-${product.accent}`} aria-hidden="true">
@@ -448,7 +467,14 @@ export default function HomePage() {
                       {inCart ? "Added ✓" : "Add to enquiry"}
                     </button>
                     <button className="details-btn" onClick={() => openProduct(product)}>Details</button>
-                    <button className="share-btn" aria-label={`Share ${product.name}`} onClick={() => shareProduct(product)}>{sharedProduct === product.id ? "Copied ✓" : "Share"}</button>
+                    <button
+                      className="share-btn icon-only"
+                      aria-label={sharedProduct === product.id ? `${product.name} link copied` : `Share ${product.name}`}
+                      title={sharedProduct === product.id ? "Link copied" : "Share product"}
+                      onClick={() => shareProduct(product)}
+                    >
+                      <ShareIcon copied={sharedProduct === product.id} />
+                    </button>
                   </div>
                 </div>
               </article>
@@ -538,7 +564,10 @@ export default function HomePage() {
             </div>
             <div className="modal-actions">
               <button className="primary-btn wide" onClick={() => { addProduct(selected); setSelected(null); setDrawerOpen(true); }}>Add to enquiry <span>→</span></button>
-              <button className="share-btn" aria-label={`Share ${selected.name}`} onClick={() => shareProduct(selected)}>{sharedProduct === selected.id ? "Link copied ✓" : "Share product"}</button>
+              <button className="share-btn" aria-label={`Share ${selected.name}`} onClick={() => shareProduct(selected)}>
+                <ShareIcon copied={sharedProduct === selected.id} />
+                {sharedProduct === selected.id ? "Link copied" : "Share product"}
+              </button>
             </div>
           </div>
         </div>

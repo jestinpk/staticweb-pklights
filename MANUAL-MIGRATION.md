@@ -6,7 +6,7 @@ Target repository: `https://github.com/jestinpk/staticweb-pklights`
 
 1. Open the target repository on GitHub.
 2. Select **Code → Codespaces → Create codespace on main**.
-3. Upload `PK-LIGHTS-pklights-whatsapp-fix.zip` into the Codespace.
+3. Upload `PK-LIGHTS-pklights-share-favicon.zip` into the Codespace.
 4. In the terminal, create a recoverable backup of the old website:
 
    ```bash
@@ -20,7 +20,7 @@ Target repository: `https://github.com/jestinpk/staticweb-pklights`
 
    ```bash
    git rm -r .
-   unzip -o PK-LIGHTS-pklights-whatsapp-fix.zip
+   unzip -o PK-LIGHTS-pklights-share-favicon.zip
    ```
 
 6. Verify that the ZIP itself is not staged, then commit and push:
