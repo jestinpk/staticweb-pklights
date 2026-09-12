@@ -15,7 +15,11 @@ export default function QuotePage() {
     form.message && `Requirement: ${form.message}`
   ].filter(Boolean).join("\n"),[form]);
   function update(key,value){setForm(current=>({...current,[key]:value}))}
-  function submit(event){event.preventDefault();window.open(`https://wa.me/919947089167?text=${encodeURIComponent(message)}`,"_blank","noopener,noreferrer")}
+  function submit(event){
+    event.preventDefault();
+    const whatsappUrl = `https://wa.me/919947089167?text=${encodeURIComponent(message)}`;
+    window.location.assign(whatsappUrl);
+  }
   return (
     <SubpageShell eyebrow="Wholesale quotation" title="Tell us what you need" intro="Provide the essential product and delivery details. Your request will open as a structured WhatsApp message.">
       <section className="info-content quote-layout">
